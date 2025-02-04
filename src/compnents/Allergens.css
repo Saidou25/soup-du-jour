@@ -1,0 +1,30 @@
+.check-title {
+  width: 100%;
+  /* background-color: blue; */
+  display: flex;
+  justify-content: flex-start;
+}
+
+.container-allergens {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: green; */
+  }
+  
+  .checkbox-container {
+    width: 50%;
+  }
+  
+  .checkbox {
+    width: 60%;
+    margin: auto;
+    display: flex;
+  }
+
+  .other-allergen {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+  }

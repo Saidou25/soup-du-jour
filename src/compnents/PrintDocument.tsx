@@ -5,7 +5,7 @@ interface PrintDocumentProps {
 }
 
 export default function PrintDocument({ soupFormData }: PrintDocumentProps) {
-  console.log(soupFormData);
+
   const allergensIngredients = soupFormData.allergens;
   return (
     <div>
@@ -13,6 +13,8 @@ export default function PrintDocument({ soupFormData }: PrintDocumentProps) {
       <h2>{soupFormData.soupName}</h2>
       <p>Description:</p>
       <p>{soupFormData.description}</p>
+      <p>Garnish:</p>
+      <p>{soupFormData.garnish}</p>
       <p>Ingredients:</p>
       <p>{soupFormData.ingredients}</p>
       <p>Allergens:</p>

@@ -1,4 +1,15 @@
 .soup-form {
-    border: 1px solid;
-    padding: 5%;
+  border: 1px solid;
+  padding: 5%;
+  /* background-color: green; */
+  
 }
+
+.label-input-divs {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+
+
