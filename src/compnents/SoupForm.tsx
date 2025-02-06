@@ -1,13 +1,13 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { soupData } from "../data";
 
-import PrintDocument from "./PrintDocument";
 import Label from "./Label";
 import Allergens from "./Allergens";
+import Preview from "./Preview";
 
 import "./SoupForm.css";
 
-export type SoupForm = {
+export interface SoupFormData {
   title: string;
   soupName: string;
   description: string;
@@ -15,23 +15,47 @@ export type SoupForm = {
   ingredients: string;
   allergens?: string[];
   otherAllergens?: string;
-  dataLabel?: string;
-};
+  dataLabel: string;
+}
 
 export default function SoupForm() {
-  const [listOfAllergens, setListOfAllergens] = useState<string[]>([]);
-  const [soupForm, setSoupForm] = useState({
+  const [showPreview, setShowPreview] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [soupFormData, setSoupForm] = useState<SoupFormData>({
     title: soupData.title,
     soupName: "",
     description: "",
     garnish: "",
     ingredients: "",
-    allergens: listOfAllergens,
+    allergens: [],
     otherAllergens: "",
     dataLabel: "",
   });
 
   const { title, fields } = soupData;
+
+  // Resetting the Form
+  const handleReset = () => {
+    setButtonDisabled(true);
+    setSoupForm({
+      title: soupData.title,
+      soupName: "",
+      description: "",
+      garnish: "",
+      ingredients: "",
+      allergens: [],
+      otherAllergens: "",
+      dataLabel: "",
+    });
+    setTimeout(() => {
+      setShowPreview(false);
+    }, 4000);
+  };
+
+  //  Handle go back to modify inputs
+  const handleGoBack = () => {
+    setShowPreview(false);
+  };
 
   // Handles the state changes within input fields
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -47,20 +71,41 @@ export default function SoupForm() {
 
   // Handle the list of allergens within Allergens component
   const handleAllergens = (data: string[]) => {
-    setListOfAllergens(data);
     setSoupForm((prev) => ({ ...prev, allergens: data }));
   };
-  
+
   // Handle the other allergen not listed as checkbox within Allergens component
   const handleOtherAllergens = (data: string) => {
+    console.log(data);
     setSoupForm((prev) => ({ ...prev, otherAllergens: data }));
   };
 
   // Submit form for print
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(soupForm);
+    setShowPreview(true);
   };
+
+  useEffect(() => {
+    if (
+      soupFormData.title ||
+      soupFormData.soupName ||
+      soupFormData.garnish ||
+      soupFormData.ingredients
+    ) {
+      setButtonDisabled(false);
+    }
+  }, [soupFormData]);
+
+  if (showPreview) {
+    return (
+      <Preview
+        soupFormData={soupFormData}
+        goBack={handleGoBack}
+        resetForm={handleReset}
+      />
+    );
+  }
 
   return (
     <div>
@@ -70,23 +115,28 @@ export default function SoupForm() {
           fields.map((field) => (
             <div key={field.label}>
               <div className="label-input-divs">
-                <Label label={field.label} />
-
+                <Label label={field.label} htmlFor={field.dataLabel} />
                 <br />
                 {field.type === "text" && (
                   <input
+                    id={field.dataLabel}
                     type={field.type}
                     placeholder={field.placeholder}
                     name={field.dataLabel}
-                    value={soupForm[field.dataLabel as keyof SoupForm] || ""}
+                    value={
+                      soupFormData[field.dataLabel as keyof SoupFormData] || ""
+                    }
                     onChange={handleInputChange}
                   />
                 )}
                 {field.type === "textArea" && (
                   <textarea
+                    id={field.dataLabel}
                     placeholder={field.placeholder}
                     name={field.dataLabel}
-                    value={soupForm[field.dataLabel as keyof SoupForm] || ""}
+                    value={
+                      soupFormData[field.dataLabel as keyof SoupFormData] || ""
+                    }
                     onChange={handleTextAreaChange}
                   ></textarea>
                 )}
@@ -97,13 +147,16 @@ export default function SoupForm() {
         <Allergens
           allergenFunc={handleAllergens}
           handleAllergensTextarea={handleOtherAllergens}
+          otherAllergenData={soupFormData.otherAllergens}
+          initialAllergens={soupFormData.allergens} // prop to persist allergens
         />
         <br />
         <br />
         <br />
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={buttonDisabled}>
+          Submit
+        </button>
       </form>
-      <PrintDocument soupFormData={soupForm} />
     </div>
   );
 }

@@ -8,24 +8,36 @@ import "./Allergens.css";
 type SoupFormProp = {
   allergenFunc: (data: string[]) => void;
   handleAllergensTextarea: (data: string) => void;
+  otherAllergenData?: string;
+  initialAllergens?: string[];
 };
 
 export default function Allergens({
   allergenFunc,
   handleAllergensTextarea,
+  otherAllergenData,
+  initialAllergens = [],
 }: SoupFormProp) {
-  const [showAllergens, setShowAllergens] = useState(false);
-  const [showOther, setShowOther] = useState(false);
-  const [otherAllergenValue, setOtherAllergenValue] = useState("");
-  const [listOfAllergens, setListOfAllergens] = useState<string[]>([]);
+  const [listOfAllergens, setListOfAllergens] =
+    useState<string[]>(initialAllergens);
+  const [showAllergensCheckboxes, setShowAllergensCheckboxes] = useState(
+    initialAllergens.length || listOfAllergens.length ? true : false
+  );
+  const [otherAllergenValue, setOtherAllergenValue] = useState(
+    otherAllergenData || ""
+  );
+  const [showOtherAllergensTextarea, setShowOtherAllergensTextarea] = useState(
+    listOfAllergens.includes("Other") || initialAllergens.includes("Other")
+      ? true
+      : false
+  );
 
   const { allergens, title, type, otherAllergen } = allergenData;
 
   // Handle the allergen checkbox. When clicked a list of allergens shows in the ui.
   const handleAllergenChecbox = () => {
-    setShowOther(false);
-    setListOfAllergens([]);
-    setShowAllergens((prev) => !prev);
+    const newState = showAllergensCheckboxes ? false : true;
+    setShowAllergensCheckboxes(newState);
   };
 
   // Handle allergen selection
@@ -37,9 +49,9 @@ export default function Allergens({
       }
       return [...prevList, data];
     });
-
     if (data === "Other") {
-      setShowOther((prev) => !prev);
+      const newState = showOtherAllergensTextarea ? false : true;
+      setShowOtherAllergensTextarea(newState);
     }
   };
 
@@ -48,38 +60,84 @@ export default function Allergens({
     allergenFunc(listOfAllergens);
   }, [listOfAllergens]);
 
+  useEffect(() => {
+    if (
+      listOfAllergens.length > 0 ||
+      initialAllergens.length > 0 ||
+      showAllergensCheckboxes
+    ) {
+      setShowAllergensCheckboxes(true);
+    } else {
+      setShowAllergensCheckboxes(false);
+    }
+  }, [listOfAllergens, initialAllergens, showAllergensCheckboxes]);
+
   return (
     <div>
       <div className="check-title">
-        <input type={type} onChange={handleAllergenChecbox} />
+        <input
+          type={type}
+          onChange={handleAllergenChecbox}
+          disabled={Boolean(listOfAllergens.length)} // Disable if otherAllergenValue is truthy
+          checked={
+            listOfAllergens.length > 0 ||
+            initialAllergens.length > 0 ||
+            showAllergensCheckboxes
+          }
+        />
         <span>{title}</span>
       </div>
       <div className="container-allergens">
-        {showAllergens &&
+        {showAllergensCheckboxes &&
           allergens?.map((allergen) => (
             <div className="checkbox-container" key={allergen.label}>
-              {allergen.type === "checkbox" && (
+              {allergen.type === "checkbox" &&
+                allergen.label !== "Other" &&
+                showAllergensCheckboxes && (
+                  <div className="checkbox">
+                    <input
+                      id={allergen.label}
+                      type="checkbox"
+                      onChange={() => handleAllergenFamily(allergen.label)}
+                      checked={listOfAllergens.includes(allergen.label)}
+                      name={allergen.label}
+                    />
+                    <Label label={allergen.label} htmlFor={allergen.label} />
+                  </div>
+                )}
+              {allergen.type === "checkbox" && allergen.label === "Other" && (
                 <div className="checkbox">
                   <input
+                    id={allergen.label}
                     type="checkbox"
                     onChange={() => handleAllergenFamily(allergen.label)}
-                    checked={listOfAllergens.includes(allergen.label)}
+                    checked={
+                      listOfAllergens.includes(allergen.label) ||
+                      Boolean(otherAllergenValue)
+                    }
+                    name={allergen.label}
+                    disabled={Boolean(otherAllergenValue)} // Disable if otherAllergenValue is truthy
                   />
-                  <span>{allergen.label}</span>
+                  <Label label={allergen.label} htmlFor={allergen.label} />
                 </div>
               )}
             </div>
           ))}
       </div>
-      {otherAllergen && showOther && showAllergens ? (
+      <br />
+      {!!otherAllergenValue.length || showOtherAllergensTextarea ? (
         <div className="other-allergen">
-          <Label label={otherAllergen.label} />
+          <Label
+            label={otherAllergen.label}
+            htmlFor={otherAllergen.dataLabel}
+          />
           <br />
           <textarea
+            id={otherAllergen.dataLabel}
             className="textarea-div"
-            placeholder={otherAllergen.placeholder}
+            placeholder={otherAllergenData || otherAllergen.placeholder}
             name={otherAllergen.dataLabel}
-            value={otherAllergenValue}
+            value={otherAllergenValue || ""}
             onChange={(e) => {
               setOtherAllergenValue(e.target.value);
               handleAllergensTextarea(e.target.value);

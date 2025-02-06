@@ -1,0 +1,51 @@
+/* .preview-container { 
+    background-color: blue;
+} */
+.soup-title {
+  font-size: 4rem;
+  margin: 0;
+}
+.soup-logo {
+  color: white;
+  width: 6%;
+  height: 6%;
+  margin-top: 1%;
+}
+.soup-name {
+    margin-top: 1%;
+  margin-bottom: 8%;
+  font-size: 3rem;
+  font-weight: bold;
+}
+.preview-label {
+  /* background-color: green; */
+  display: flex;
+  justify-content: flex-start;
+  font-size: 2rem;
+}
+.preview-text {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 2%;
+  font-size: 1.5rem;
+}
+.final-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media print {
+  body {
+    background-color: white;
+    color: black;
+  }
+  .soup-logo {
+    color: black;
+  }
+  .print {
+    display: block;
+  }
+  .no-print {
+    display: none;
+  }
+}

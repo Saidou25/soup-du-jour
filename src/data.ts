@@ -59,7 +59,7 @@ const allergenData: AllergensList = {
     },
   ],
   otherAllergen: {
-    label: "Other allergen(s):",
+    label: "Uncomon allergen(s):",
     dataLabel: "other",
     type: "textArea", // "text" is valid as defined in FieldType
     placeholder: "Please list ingredient(s)",
@@ -67,7 +67,7 @@ const allergenData: AllergensList = {
 };
 
 const soupData: Soup = {
-  title: "Soup du jour",
+  title: "Soupe du jour",
   fields: [
     {
       label: "Soup name:",
