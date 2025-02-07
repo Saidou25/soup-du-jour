@@ -3,6 +3,7 @@ import type { SoupFormData } from "./SoupForm";
 import { TbSoup } from "react-icons/tb";
 
 import Button from "./Button";
+import Modal from "./ModalWindow";
 
 import "./Preview.css";
 
@@ -17,6 +18,8 @@ export default function Preview({
   goBack,
   resetForm,
 }: PreviewProps) {
+  const [showModalWindow, setShowModalWindow] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
   const [showFinalMessage, setShowFinalMessage] = useState<string | null>(null);
   const [showUncomonAllergens, setShowUncomonAllergens] = useState<string | "">(
     ""
@@ -25,12 +28,27 @@ export default function Preview({
 
   const allergensIngredients = soupFormData.allergens ?? [];
 
+  const handleClose = () => {
+    setShowModalWindow(false);
+    setModalMessage("");
+  };
+
+  const handleConfirm = () => {
+    setShowModalWindow(false);
+    setShowFinalMessage("Thank you for using Chefs' Life Made Easy.");
+    setModalMessage("");
+    resetForm();
+  };
+
+  window.onafterprint = () => {
+    setShowModalWindow(true);
+    setModalMessage("Did the print complete successfully?");
+  };
+
   useEffect(() => {
     if (soupFormData.otherAllergens) {
-      // console.log("there is other");
       setShowUncomonAllergens(soupFormData.otherAllergens);
     } else {
-      // console.log("there is no other");
       setShowUncomonAllergens("");
     }
   }, [soupFormData]);
@@ -44,14 +62,20 @@ export default function Preview({
   }, [allergensIngredients]);
 
   if (showFinalMessage) {
-    return <p className="final-message">{showFinalMessage}</p>;
+    return (
+      <div className="container-final">
+        <p className="final-message">{showFinalMessage}</p>
+      </div>
+    );
   }
 
   return (
-    <div className="preview-container print">
-      <h1 className="soup-title">{soupFormData.title}</h1>
-      <TbSoup className="soup-logo" />
-      <p className="soup-name">{soupFormData.soupName}</p>
+    <div className="print">
+      <div className="title-logo-container">
+        <h1 className="soup-title">{soupFormData.title}</h1>
+        <TbSoup className="soup-logo" />
+        <p className="soup-name">{soupFormData.soupName}</p>
+      </div>
       <p className="preview-label">Description:</p>
       <p className="preview-text">{soupFormData.description}</p>
       <p className="preview-label">Garnish:</p>
@@ -75,30 +99,39 @@ export default function Preview({
       ) : null}
       {showUncomonAllergens && (
         <>
-          <p className="preview-label">Uncomon allergens:</p>
+          <p className="preview-label">Less common allergens:</p>
           <p className="preview-text">{soupFormData.otherAllergens}</p>
         </>
       )}
-      <div className="container-buttons">
-        <div className="edit">
-          <Button className="button no-print" type="button" onClick={goBack}>
-            Edit
-          </Button>
-        </div>
-        <div className="print">
-          <Button
-            className="button no-print"
-            type="button"
-            onClick={() => {
-              window.print();
-              resetForm();
-              setShowFinalMessage("Thank you for using 'Soupe du jour'.");
-            }}
-          >
-            Print
-          </Button>
-        </div>
+      <br />
+      <br />
+      <div className="container-buttons no-print">
+        <Button
+          className="button-edit"
+          type="button"
+          onClick={goBack}
+          printEdit="edit"
+        >
+          Edit
+        </Button>
+        <Button
+          className="button-print"
+          type="button"
+          printEdit="print"
+          onClick={() => {
+            window.print();
+          }}
+        >
+          Print
+        </Button>
       </div>
+      {showModalWindow && (
+        <Modal
+          onConfirm={handleConfirm}
+          onClose={handleClose}
+          message={modalMessage}
+        />
+      )}
     </div>
   );
 }

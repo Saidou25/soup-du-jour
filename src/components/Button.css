@@ -12,6 +12,23 @@
     border-style: double;
     margin-bottom: 3%;
 }
+.print-edit-container {
+    background-color: blue;
+    width: 40%;
+    margin: auto;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    margin: 0 2% 0 2%;
+    border-radius: 50px;
+    border: 4px solid white;
+    border-style: double;
+    margin-bottom: 3%;
+}
+.button-edit,
+.button-print,
 .button {
     width: 100%;
     background-color: black;
@@ -21,8 +38,8 @@
     cursor: pointer;
 }
 button:disabled {
-    opacity: 0.5;  /* Make the button look disabled */
-    cursor: not-allowed; /* Prevent pointer hover */
+    opacity: 0.5; 
+    cursor: not-allowed; 
   }
 .stop {
     color: white;

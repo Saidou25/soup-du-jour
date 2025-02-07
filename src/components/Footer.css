@@ -1,0 +1,32 @@
+.container-footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(
+    8,
+    8,
+    8
+  ); /* For browsers that do not support gradients */
+  background-image: linear-gradient(30deg, rgb(72, 0, 255), rgb(4, 4, 4));
+  margin: 0;
+  padding: 0;
+  height: 200px;
+  margin-top: 5%;
+}
+.footer-text {
+  text-align: center;
+}
+.container-logo {
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+  width: 3%;
+  height: auto;
+  margin: auto;
+  color: white;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 1%;
+}
+

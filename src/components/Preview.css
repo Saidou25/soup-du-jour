@@ -1,0 +1,69 @@
+.title-logo-container {
+  text-align: center;
+}
+.soup-title {
+  font-size: 4rem;
+  margin: 0;
+}
+.soup-logo {
+  color: white;
+  width: 6%;
+  height: 6%;
+  margin-top: 1%;
+}
+.soup-name {
+  margin-top: 1%;
+  margin-bottom: 8%;
+  font-size: 3rem;
+  font-weight: bold;
+}
+.preview-label {
+  font-size: 2rem;
+}
+.preview-text {
+  margin-left: 2%;
+  font-size: 1.5rem;
+}
+.container-buttons {
+  display: flex;
+  width: 50%;
+  margin: auto;
+}
+.container-buttons {
+  display: flex;
+  align-items: center !important;
+  justify-content: center;
+}
+.container-final {
+  height: 100vh;
+  /* background-color: blue; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb( 8, 8, 8); /* For browsers that do not support gradients */
+  background-image: linear-gradient(30deg, rgba(72, 0, 255, 0.349), rgb(4, 4, 4));
+}
+.final-message {
+  display: flex;
+  align-items: center;
+  padding: 7%;
+  background-color: black;
+ font-size: 2rem;
+ background-color: rgb( 8, 8, 8); /* For browsers that do not support gradients */
+ background-image: linear-gradient(30deg, rgb(72, 0, 255), rgb(4, 4, 4));
+}
+@media print {
+  body {
+    background-color: white;
+    color: black;
+  }
+  .soup-logo {
+    color: black;
+  }
+  .print {
+    display: block;
+  }
+  .no-print {
+    display: none;
+  }
+}

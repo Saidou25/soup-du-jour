@@ -1,8 +1,14 @@
 import "./App.css";
-import SoupForm from "./compnents/SoupForm";
+import Footer from "./components/Footer";
+import SoupForm from "./components/SoupForm";
 
 function App() {
-  return <div><SoupForm /></div>;
+  return (
+    <div>
+      <SoupForm />
+      <Footer />
+    </div>
+  );
 }
 
 export default App;

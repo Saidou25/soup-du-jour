@@ -83,16 +83,16 @@ const soupData: Soup = {
       placeholder: "Provide a brief description of the soup",
     },
     {
-      label: "Garnish:",
-      dataLabel: "garnish",
-      type: "text", // "textArea" is valid as defined in FieldType
-      placeholder: "List garnish ingredients",
-    },
-    {
       label: "Ingredients:",
       dataLabel: "ingredients",
       type: "textArea", // "text" is valid as defined in FieldType
       placeholder: "List ingredients",
+    },
+    {
+      label: "Garnish:",
+      dataLabel: "garnish",
+      type: "text", // "textArea" is valid as defined in FieldType
+      placeholder: "List garnish ingredients",
     },
   ],
 };

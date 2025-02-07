@@ -1,8 +1,6 @@
 .check-title {
   width: 100%;
-  /* background-color: blue; */
   display: flex;
-  justify-content: flex-start;
 }
 
 .container-allergens {
@@ -10,18 +8,22 @@
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    /* background-color: green; */
   }
   
   .checkbox-container {
     width: 50%;
   }
-  
+  /* control the background color of a checked checkbox */
+  input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: black; /* for modern browsers */
+  }
   .checkbox {
     width: 60%;
     margin: auto;
     display: flex;
-    /* margin-right: 4px; */
+    align-items: center;
   }
 .checkbox-check {
   margin-right: 5%;

@@ -7,6 +7,7 @@ import Preview from "./Preview";
 import Button from "./Button";
 
 import "./SoupForm.css";
+import Header from "./header";
 
 export interface SoupFormData {
   title: string;
@@ -110,6 +111,7 @@ export default function SoupForm() {
 
   return (
     <div>
+      <Header headerTitle="Create a Soupe du jour" />
       <h1 className="title">{title}</h1>
       <form className="soup-form" onSubmit={handleFormSubmit}>
         {fields &&
