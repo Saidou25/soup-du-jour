@@ -59,10 +59,11 @@ const allergenData: AllergensList = {
     },
   ],
   otherAllergen: {
-    label: "Uncomon allergen(s):",
+    label: "Less common allergen(s):",
     dataLabel: "other",
     type: "textArea", // "text" is valid as defined in FieldType
-    placeholder: "Please list ingredient(s)",
+    placeholder: "Enter less common allergens"
+,
   },
 };
 
@@ -73,25 +74,25 @@ const soupData: Soup = {
       label: "Soup name:",
       dataLabel: "soupName",
       type: "text", // "textArea" is valid as defined in FieldType
-      placeholder: "Soup's name",
+      placeholder:  "Enter soup name",
     },
     {
       label: "Description:",
       dataLabel: "description",
       type: "textArea", // "textArea" is valid as defined in FieldType
-      placeholder: "Please describe the soup in a few words",
+      placeholder: "Provide a brief description of the soup",
     },
     {
       label: "Garnish:",
       dataLabel: "garnish",
       type: "text", // "textArea" is valid as defined in FieldType
-      placeholder: "Please list garnish ingredients",
+      placeholder: "List garnish ingredients",
     },
     {
       label: "Ingredients:",
       dataLabel: "ingredients",
       type: "textArea", // "text" is valid as defined in FieldType
-      placeholder: "Please list ingredients",
+      placeholder: "List ingredients",
     },
   ],
 };

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import type { SoupFormData } from "./SoupForm";
 import { TbSoup } from "react-icons/tb";
 
+import Button from "./Button";
+
 import "./Preview.css";
 
 interface PreviewProps {
@@ -16,9 +18,9 @@ export default function Preview({
   resetForm,
 }: PreviewProps) {
   const [showFinalMessage, setShowFinalMessage] = useState<string | null>(null);
-  const [showUncomonAllergens, setShowUncomonAllergens] = useState<
-    string | ""
-  >("");
+  const [showUncomonAllergens, setShowUncomonAllergens] = useState<string | "">(
+    ""
+  );
   const [newAllergens, setNewAllergens] = useState<string[]>([]);
 
   const allergensIngredients = soupFormData.allergens ?? [];
@@ -34,7 +36,7 @@ export default function Preview({
   }, [soupFormData]);
 
   useEffect(() => {
-    // Removing unwanted "Other" intoduced to "allergensIngredients" when selecting "Other" from the list of allergens checkboxes 
+    // Removing unwanted "Other" intoduced to "allergensIngredients" when selecting "Other" from the list of allergens checkboxes
     const filteredIngredients = allergensIngredients?.filter(
       (allergensIngredient) => allergensIngredient !== "Other"
     );
@@ -77,21 +79,26 @@ export default function Preview({
           <p className="preview-text">{soupFormData.otherAllergens}</p>
         </>
       )}
-
-      <button
-        className="button no-print"
-        type="button"
-        onClick={() => {
-          window.print();
-          resetForm();
-          setShowFinalMessage("Thank you for using 'Soupe du jour'.");
-        }}
-      >
-        print
-      </button>
-      <button className="button no-print" type="button" onClick={goBack}>
-        go back
-      </button>
+      <div className="container-buttons">
+        <div className="edit">
+          <Button className="button no-print" type="button" onClick={goBack}>
+            Edit
+          </Button>
+        </div>
+        <div className="print">
+          <Button
+            className="button no-print"
+            type="button"
+            onClick={() => {
+              window.print();
+              resetForm();
+              setShowFinalMessage("Thank you for using 'Soupe du jour'.");
+            }}
+          >
+            Print
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

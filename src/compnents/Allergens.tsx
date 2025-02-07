@@ -77,6 +77,7 @@ export default function Allergens({
       <div className="check-title">
         <input
           type={type}
+          id="label-title"
           onChange={handleAllergenChecbox}
           disabled={Boolean(listOfAllergens.length)} // Disable if otherAllergenValue is truthy
           checked={
@@ -85,8 +86,9 @@ export default function Allergens({
             showAllergensCheckboxes
           }
         />
-        <span>{title}</span>
+        <Label label={title} htmlFor="label-title" />
       </div>
+      <br />
       <div className="container-allergens">
         {showAllergensCheckboxes &&
           allergens?.map((allergen) => (
@@ -96,6 +98,7 @@ export default function Allergens({
                 showAllergensCheckboxes && (
                   <div className="checkbox">
                     <input
+                      className="checkbox-check"
                       id={allergen.label}
                       type="checkbox"
                       onChange={() => handleAllergenFamily(allergen.label)}
@@ -108,6 +111,7 @@ export default function Allergens({
               {allergen.type === "checkbox" && allergen.label === "Other" && (
                 <div className="checkbox">
                   <input
+                    className="checkbox-check"
                     id={allergen.label}
                     type="checkbox"
                     onChange={() => handleAllergenFamily(allergen.label)}
@@ -134,7 +138,7 @@ export default function Allergens({
           <br />
           <textarea
             id={otherAllergen.dataLabel}
-            className="textarea-div"
+            className="text"
             placeholder={otherAllergenData || otherAllergen.placeholder}
             name={otherAllergen.dataLabel}
             value={otherAllergenValue || ""}
@@ -143,6 +147,7 @@ export default function Allergens({
               handleAllergensTextarea(e.target.value);
             }}
           ></textarea>
+          <br />
         </div>
       ) : null}
     </div>

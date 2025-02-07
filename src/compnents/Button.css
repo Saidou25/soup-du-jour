@@ -1,0 +1,47 @@
+.container-button {
+    background-color: blue;
+    width: 12%;
+    margin: auto;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 50px;
+    border: 4px solid white;
+    border-style: double;
+    margin-bottom: 3%;
+}
+.button {
+    width: 100%;
+    background-color: black;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+button:disabled {
+    opacity: 0.5;  /* Make the button look disabled */
+    cursor: not-allowed; /* Prevent pointer hover */
+  }
+.stop {
+    color: white;
+}
+@media screen and (max-width: 1000px) {
+    .container-button {
+        width: 15%;
+    margin: auto;
+    }
+}
+@media screen and (max-width: 700px) {
+    .container-button {
+        width: 20%;
+    margin: auto;
+    }
+}
+@media screen and (max-width: 550px) {
+    .container-button {
+        width: 40%;
+    margin: auto;
+    }
+}

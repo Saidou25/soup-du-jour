@@ -4,6 +4,7 @@ import { soupData } from "../data";
 import Label from "./Label";
 import Allergens from "./Allergens";
 import Preview from "./Preview";
+import Button from "./Button";
 
 import "./SoupForm.css";
 
@@ -21,7 +22,7 @@ export interface SoupFormData {
 export default function SoupForm() {
   const [showPreview, setShowPreview] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [soupFormData, setSoupForm] = useState<SoupFormData>({
+  const [soupFormData, setSoupFormData] = useState<SoupFormData>({
     title: soupData.title,
     soupName: "",
     description: "",
@@ -37,7 +38,7 @@ export default function SoupForm() {
   // Resetting the Form
   const handleReset = () => {
     setButtonDisabled(true);
-    setSoupForm({
+    setSoupFormData({
       title: soupData.title,
       soupName: "",
       description: "",
@@ -60,24 +61,23 @@ export default function SoupForm() {
   // Handles the state changes within input fields
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setSoupForm((prev) => ({ ...prev, [name]: value }));
+    setSoupFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   // Handle the state changes within textareas
   const handleTextAreaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setSoupForm((prev) => ({ ...prev, [name]: value }));
+    setSoupFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   // Handle the list of allergens within Allergens component
   const handleAllergens = (data: string[]) => {
-    setSoupForm((prev) => ({ ...prev, allergens: data }));
+    setSoupFormData((prev) => ({ ...prev, allergens: data }));
   };
 
   // Handle the other allergen not listed as checkbox within Allergens component
   const handleOtherAllergens = (data: string) => {
-    console.log(data);
-    setSoupForm((prev) => ({ ...prev, otherAllergens: data }));
+    setSoupFormData((prev) => ({ ...prev, otherAllergens: data }));
   };
 
   // Submit form for print
@@ -85,15 +85,16 @@ export default function SoupForm() {
     e.preventDefault();
     setShowPreview(true);
   };
-
+  
   useEffect(() => {
     if (
-      soupFormData.title ||
-      soupFormData.soupName ||
-      soupFormData.garnish ||
+      soupFormData.soupName &&
+      soupFormData.garnish &&
       soupFormData.ingredients
     ) {
       setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
     }
   }, [soupFormData]);
 
@@ -109,7 +110,7 @@ export default function SoupForm() {
 
   return (
     <div>
-      <h1>{title}</h1>
+      <h1 className="title">{title}</h1>
       <form className="soup-form" onSubmit={handleFormSubmit}>
         {fields &&
           fields.map((field) => (
@@ -119,6 +120,7 @@ export default function SoupForm() {
                 <br />
                 {field.type === "text" && (
                   <input
+                    className="text"
                     id={field.dataLabel}
                     type={field.type}
                     placeholder={field.placeholder}
@@ -131,6 +133,7 @@ export default function SoupForm() {
                 )}
                 {field.type === "textArea" && (
                   <textarea
+                    className="text"
                     id={field.dataLabel}
                     placeholder={field.placeholder}
                     name={field.dataLabel}
@@ -151,11 +154,10 @@ export default function SoupForm() {
           initialAllergens={soupFormData.allergens} // prop to persist allergens
         />
         <br />
-        <br />
-        <br />
-        <button type="submit" disabled={buttonDisabled}>
+
+        <Button type="submit" disabled={buttonDisabled} className="button">
           Submit
-        </button>
+        </Button>
       </form>
     </div>
   );

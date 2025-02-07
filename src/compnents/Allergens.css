@@ -21,10 +21,26 @@
     width: 60%;
     margin: auto;
     display: flex;
+    /* margin-right: 4px; */
   }
-
+.checkbox-check {
+  margin-right: 5%;
+}
   .other-allergen {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
+  }
+  @media screen and (max-width: 760px) {
+    .container-allergens {
+      width: 80%;
+    }
+  }
+  @media screen and (max-width: 483px) {
+    .container-allergens {
+      width: 100%;
+    }
+    .checkbox {
+      width: 70%;
+    }
   }
