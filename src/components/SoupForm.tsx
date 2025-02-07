@@ -5,9 +5,9 @@ import Label from "./Label";
 import Allergens from "./Allergens";
 import Preview from "./Preview";
 import Button from "./Button";
+import Header from "./header";
 
 import "./SoupForm.css";
-import Header from "./header";
 
 export interface SoupFormData {
   title: string;
@@ -20,7 +20,11 @@ export interface SoupFormData {
   dataLabel: string;
 }
 
-export default function SoupForm() {
+type LandingPageProps = {
+  backToLandingPage: (value: boolean) => void;
+}
+
+export default function SoupForm({ backToLandingPage }: LandingPageProps) {
   const [showPreview, setShowPreview] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [soupFormData, setSoupFormData] = useState<SoupFormData>({
@@ -50,7 +54,7 @@ export default function SoupForm() {
       dataLabel: "",
     });
     setTimeout(() => {
-      setShowPreview(false);
+      backToLandingPage(false);
     }, 4000);
   };
 
@@ -111,9 +115,9 @@ export default function SoupForm() {
 
   return (
     <div>
-      <Header headerTitle="Create a Soupe du jour" />
-      <h1 className="title">{title}</h1>
+      <Header headerTitle="Create your Soupe du jour" />
       <form className="soup-form" onSubmit={handleFormSubmit}>
+      <h1 className="title">{title}</h1>
         {fields &&
           fields.map((field) => (
             <div key={field.label}>
@@ -147,6 +151,7 @@ export default function SoupForm() {
                 )}
               </div>
               <br />
+              <br />
             </div>
           ))}
         <Allergens
@@ -156,7 +161,8 @@ export default function SoupForm() {
           initialAllergens={soupFormData.allergens} // prop to persist allergens
         />
         <br />
-
+        <br />
+        <br />
         <Button type="submit" disabled={buttonDisabled} className="button">
           Submit
         </Button>

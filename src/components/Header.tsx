@@ -6,7 +6,7 @@ type HeaderProps = {
 
 export default function Header({ headerTitle }: HeaderProps) {
   return (
-    <div className="container-header">
+    <div className="container-header no-print">
       <p className="header-text">{headerTitle}</p>
     </div>
   );

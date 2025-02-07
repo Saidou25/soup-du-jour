@@ -4,7 +4,7 @@ import "./Footer.css";
 
 export default function Footer() {
   return (
-    <div className="container-footer">
+    <div className="container-footer no-print">
       <div className="footer-text-div">
         <p className="footer-text">Chefs' Life Made Easy was built by Saidou Monta</p>
         <p className="footer-text">

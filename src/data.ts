@@ -68,7 +68,7 @@ const allergenData: AllergensList = {
 };
 
 const soupData: Soup = {
-  title: "Soupe du jour",
+  title: "Soup form",
   fields: [
     {
       label: "Soup name:",

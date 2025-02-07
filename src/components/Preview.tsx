@@ -4,6 +4,7 @@ import { TbSoup } from "react-icons/tb";
 
 import Button from "./Button";
 import Modal from "./ModalWindow";
+import Header from "./header";
 
 import "./Preview.css";
 
@@ -64,66 +65,71 @@ export default function Preview({
   if (showFinalMessage) {
     return (
       <div className="container-final">
-        <p className="final-message">{showFinalMessage}</p>
+        <div className="final-div">
+          <p className="final-message">{showFinalMessage}</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="print">
-      <div className="title-logo-container">
-        <h1 className="soup-title">{soupFormData.title}</h1>
-        <TbSoup className="soup-logo" />
-        <p className="soup-name">{soupFormData.soupName}</p>
-      </div>
-      <p className="preview-label">Description:</p>
-      <p className="preview-text">{soupFormData.description}</p>
-      <p className="preview-label">Garnish:</p>
-      <p className="preview-text">{soupFormData.garnish}</p>
-      <p className="preview-label">Ingredients:</p>
-      <p className="preview-text">{soupFormData.ingredients}</p>
-      {newAllergens.length ? (
-        <>
-          <p className="preview-label">Allergens:</p>
-          <div className="preview-text">
-            {newAllergens &&
-              newAllergens.map((newAllergen, index) => (
-                <span key={index}>
-                  {index !== newAllergens.length - 1
-                    ? `${newAllergen},\u00A0`
-                    : `${newAllergen}.`}
-                </span>
-              ))}
-          </div>
-        </>
-      ) : null}
-      {showUncomonAllergens && (
-        <>
-          <p className="preview-label">Less common allergens:</p>
-          <p className="preview-text">{soupFormData.otherAllergens}</p>
-        </>
-      )}
-      <br />
-      <br />
-      <div className="container-buttons no-print">
-        <Button
-          className="button-edit"
-          type="button"
-          onClick={goBack}
-          printEdit="edit"
-        >
-          Edit
-        </Button>
-        <Button
-          className="button-print"
-          type="button"
-          printEdit="print"
-          onClick={() => {
-            window.print();
-          }}
-        >
-          Print
-        </Button>
+    <div className="preview-container">
+      <Header headerTitle="Review" />
+      <div className="review-container print">
+        <div className="title-logo-container">
+          <h1 className="soup-title">Soupe du jour</h1>
+          <TbSoup className="soup-logo" />
+          <p className="soup-name">{soupFormData.soupName}</p>
+        </div>
+        <p className="preview-label">Description:</p>
+        <p className="preview-text">{soupFormData.description}</p>
+        <p className="preview-label">Garnish:</p>
+        <p className="preview-text">{soupFormData.garnish}</p>
+        <p className="preview-label">Ingredients:</p>
+        <p className="preview-text">{soupFormData.ingredients}</p>
+        {newAllergens.length ? (
+          <>
+            <p className="preview-label">Allergens:</p>
+            <div className="preview-text">
+              {newAllergens &&
+                newAllergens.map((newAllergen, index) => (
+                  <span key={index}>
+                    {index !== newAllergens.length - 1
+                      ? `${newAllergen},\u00A0`
+                      : `${newAllergen}.`}
+                  </span>
+                ))}
+            </div>
+          </>
+        ) : null}
+        {showUncomonAllergens && (
+          <>
+            <p className="preview-label">Less common allergens:</p>
+            <p className="preview-text">{soupFormData.otherAllergens}</p>
+          </>
+        )}
+        <br />
+        <br />
+        <div className="container-buttons no-print">
+          <Button
+            className="button-edit"
+            type="button"
+            onClick={goBack}
+            printEdit="edit"
+          >
+            Edit
+          </Button>
+          <Button
+            className="button-print"
+            type="button"
+            printEdit="print"
+            onClick={() => {
+              window.print();
+            }}
+          >
+            Print
+          </Button>
+        </div>
       </div>
       {showModalWindow && (
         <Modal

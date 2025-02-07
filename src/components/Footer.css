@@ -3,12 +3,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(
+  /* background-color: rgb(
     8,
     8,
     8
-  ); /* For browsers that do not support gradients */
-  background-image: linear-gradient(30deg, rgb(72, 0, 255), rgb(4, 4, 4));
+  );  */
+  /* background-image: linear-gradient(30deg, rgb(72, 0, 255), rgb(4, 4, 4)); */
+  background: rgba(18, 16, 16, 0.4);
+  backdrop-filter: blur(10px);
   margin: 0;
   padding: 0;
   height: 200px;
@@ -16,6 +18,7 @@
 }
 .footer-text {
   text-align: center;
+  font-size: 18px;
 }
 .container-logo {
   display: flex;
