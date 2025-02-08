@@ -5,7 +5,7 @@ import Label from "./Label";
 import Allergens from "./Allergens";
 import Preview from "./Preview";
 import Button from "./Button";
-import Header from "./header";
+import Header from "./Header";
 
 import "./SoupForm.css";
 
