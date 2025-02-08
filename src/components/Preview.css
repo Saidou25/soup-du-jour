@@ -84,17 +84,12 @@
   .no-print {
     display: none;
   }
-  .peview-container {
+  .preview-container {
     background-image: none;
-    margin: 0;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
+    background-color: white;
+    width: 100%;
     width: 100vw;
     display: flex;
-    flex-direction: column;
-    overflow: hidden;
   }
   .review-container {
     border: none;
