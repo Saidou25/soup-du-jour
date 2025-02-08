@@ -4,7 +4,7 @@ import { TbSoup } from "react-icons/tb";
 
 import Button from "./Button";
 import Modal from "./ModalWindow";
-import Header from "./header";
+import Header from "./Header";
 
 import "./Preview.css";
 
