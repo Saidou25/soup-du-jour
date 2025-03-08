@@ -77,7 +77,7 @@ export default function Preview({
       <Header headerTitle="Review" />
       <div className="review-container print">
         <div className="title-logo-container">
-          <h1 className="soup-title">Soupe du jour</h1>
+          <h1 className="soup-title">Chef's featured soup</h1>
           <TbSoup className="soup-logo" />
           <p className="soup-name">{soupFormData.soupName}</p>
         </div>

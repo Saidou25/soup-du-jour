@@ -34,6 +34,10 @@ const allergenData: AllergensList = {
       type: "checkbox", // "checkbox" is valid as defined in FieldType
     },
     {
+      label: "Peanuts",
+      type: "checkbox", // "checkbox" is valid as defined in FieldType
+    },
+    {
       label: "Fish",
       type: "checkbox", // "checkbox" is valid as defined in FieldType
     },
@@ -47,6 +51,10 @@ const allergenData: AllergensList = {
     },
     {
       label: "Soy",
+      type: "checkbox", // "checkbox" is valid as defined in FieldType
+    },
+    {
+      label: "Sesame",
       type: "checkbox", // "checkbox" is valid as defined in FieldType
     },
     {
