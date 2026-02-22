@@ -7,7 +7,6 @@ type ButtonType = {
   disabled?: boolean;
   children: ReactNode;
   className?: string;
-  printEdit?: string;
   onClick?: () => void;
 };
 
@@ -16,7 +15,6 @@ export default function Button({
   disabled,
   children,
   className,
-  printEdit,
   onClick,
 }: ButtonType) {
   return (

@@ -264,14 +264,12 @@ export default function Preview({
                     className="btn btn-outline-secondary"
                     type="button"
                     onClick={goBack}
-                    printEdit="edit"
                   >
                     Edit
                   </Button>
                   <Button
                     className="btn btn-primary"
                     type="button"
-                    printEdit="print"
                     onClick={() => {
                       window.print();
                     }}

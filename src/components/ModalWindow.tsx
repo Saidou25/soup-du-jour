@@ -22,7 +22,6 @@ const ModalWindow = ({ message, onConfirm, onClose }: ModalProps) => {
             className="col-5 button"
             onClick={onConfirm}
             type="button"
-            printEdit="print-edit-container"
           >
             Yes
           </Button>
@@ -30,7 +29,6 @@ const ModalWindow = ({ message, onConfirm, onClose }: ModalProps) => {
             className="col-5 button"
             onClick={onClose}
             type="button"
-            printEdit="print-edit-container"
           >
             No
           </Button>
