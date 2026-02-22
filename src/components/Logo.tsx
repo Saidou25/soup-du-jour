@@ -83,7 +83,7 @@ export default function Logo() {
   }, []);
 
   return (
-    <div className="cls-container">
+    <div className="cls-container elevated-card">
       <div className="cls">
         <span className="first-letter">C</span>
         {start &&

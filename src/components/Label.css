@@ -1,6 +1,5 @@
 .label {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 18px;
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
 }

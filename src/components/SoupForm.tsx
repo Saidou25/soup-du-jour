@@ -22,27 +22,45 @@ export interface SoupFormData {
 
 type LandingPageProps = {
   backToLandingPage: (value: boolean) => void;
+  soupFormData: SoupFormData;
+  setSoupFormData: React.Dispatch<React.SetStateAction<SoupFormData>>;
+  reviewFontScale: number;
+  setReviewFontScale: React.Dispatch<React.SetStateAction<number>>;
+  reviewCapsTitle: boolean;
+  setReviewCapsTitle: React.Dispatch<React.SetStateAction<boolean>>;
+  reviewCapsSoupName: boolean;
+  setReviewCapsSoupName: React.Dispatch<React.SetStateAction<boolean>>;
+  reviewCapsLabels: boolean;
+  setReviewCapsLabels: React.Dispatch<React.SetStateAction<boolean>>;
+  reviewCapsBody: boolean;
+  setReviewCapsBody: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function SoupForm({ backToLandingPage }: LandingPageProps) {
+export default function SoupForm({
+  backToLandingPage,
+  soupFormData,
+  setSoupFormData,
+  reviewFontScale,
+  setReviewFontScale,
+  reviewCapsTitle,
+  setReviewCapsTitle,
+  reviewCapsSoupName,
+  setReviewCapsSoupName,
+  reviewCapsLabels,
+  setReviewCapsLabels,
+  reviewCapsBody,
+  setReviewCapsBody,
+}: LandingPageProps) {
   const [showPreview, setShowPreview] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [soupFormData, setSoupFormData] = useState<SoupFormData>({
-    title: soupData.title,
-    soupName: "",
-    description: "",
-    garnish: "",
-    ingredients: "",
-    allergens: [],
-    otherAllergens: "",
-    dataLabel: "",
-  });
+  const [submitAttempted, setSubmitAttempted] = useState(false);
 
   const { title, fields } = soupData;
 
   // Resetting the Form
   const handleReset = () => {
     setButtonDisabled(true);
+    setSubmitAttempted(false);
     setSoupFormData({
       title: soupData.title,
       soupName: "",
@@ -56,6 +74,22 @@ export default function SoupForm({ backToLandingPage }: LandingPageProps) {
     setTimeout(() => {
       backToLandingPage(false);
     }, 4000);
+  };
+
+  // Clear form without leaving the page
+  const handleClearForm = () => {
+    setButtonDisabled(true);
+    setSubmitAttempted(false);
+    setSoupFormData({
+      title: soupData.title,
+      soupName: "",
+      description: "",
+      garnish: "",
+      ingredients: "",
+      allergens: [],
+      otherAllergens: "",
+      dataLabel: "",
+    });
   };
 
   //  Handle go back to modify inputs
@@ -85,18 +119,26 @@ export default function SoupForm({ backToLandingPage }: LandingPageProps) {
     setSoupFormData((prev) => ({ ...prev, otherAllergens: data }));
   };
 
+  const isFormValid = () =>
+    Boolean(
+      soupFormData.soupName?.trim() &&
+        soupFormData.description?.trim() &&
+        soupFormData.ingredients?.trim() &&
+        soupFormData.garnish?.trim()
+    );
+
   // Submit form for print
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSubmitAttempted(true);
+    if (!isFormValid()) {
+      return;
+    }
     setShowPreview(true);
   };
   
   useEffect(() => {
-    if (
-      soupFormData.soupName &&
-      soupFormData.garnish &&
-      soupFormData.ingredients
-    ) {
+    if (isFormValid()) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
@@ -108,65 +150,98 @@ export default function SoupForm({ backToLandingPage }: LandingPageProps) {
       <Preview
         soupFormData={soupFormData}
         goBack={handleGoBack}
+        goHome={() => backToLandingPage(true)}
         resetForm={handleReset}
+        reviewFontScale={reviewFontScale}
+        setReviewFontScale={setReviewFontScale}
+        reviewCapsTitle={reviewCapsTitle}
+        setReviewCapsTitle={setReviewCapsTitle}
+        reviewCapsSoupName={reviewCapsSoupName}
+        setReviewCapsSoupName={setReviewCapsSoupName}
+        reviewCapsLabels={reviewCapsLabels}
+        setReviewCapsLabels={setReviewCapsLabels}
+        reviewCapsBody={reviewCapsBody}
+        setReviewCapsBody={setReviewCapsBody}
       />
     );
   }
 
   return (
     <div>
-      <Header headerTitle="Create your Soupe du jour" />
-      <form className="soup-form" onSubmit={handleFormSubmit}>
-      <h1 className="title">{title}</h1>
-        {fields &&
-          fields.map((field) => (
-            <div key={field.label}>
-              <div className="label-input-divs">
-                <Label label={field.label} htmlFor={field.dataLabel} />
-                <br />
-                {field.type === "text" && (
-                  <input
-                    className="text"
-                    id={field.dataLabel}
-                    type={field.type}
-                    placeholder={field.placeholder}
-                    name={field.dataLabel}
-                    value={
-                      soupFormData[field.dataLabel as keyof SoupFormData] || ""
-                    }
-                    onChange={handleInputChange}
-                  />
-                )}
-                {field.type === "textArea" && (
-                  <textarea
-                    className="text"
-                    id={field.dataLabel}
-                    placeholder={field.placeholder}
-                    name={field.dataLabel}
-                    value={
-                      soupFormData[field.dataLabel as keyof SoupFormData] || ""
-                    }
-                    onChange={handleTextAreaChange}
-                  ></textarea>
-                )}
-              </div>
-              <br />
-              <br />
+      <Header
+        headerTitle="Create your featured soup"
+        onHomeClick={() => backToLandingPage(true)}
+        homeLabel="CLS"
+      />
+      <div className="container pb-5 pt-4">
+        <form className="soup-form card elevated-card" onSubmit={handleFormSubmit}>
+          <div className="card-body">
+            <h1 className="title h3 mb-4">{title}</h1>
+            {fields &&
+              fields.map((field) => (
+                <div key={field.label} className="mb-3">
+                  <Label label={field.label} htmlFor={field.dataLabel} />
+                  {field.type === "text" && (
+                    <input
+                      className="form-control"
+                      id={field.dataLabel}
+                      type={field.type}
+                      placeholder={field.placeholder}
+                      name={field.dataLabel}
+                      value={
+                        soupFormData[field.dataLabel as keyof SoupFormData] || ""
+                      }
+                      onChange={handleInputChange}
+                    />
+                  )}
+                  {field.type === "textArea" && (
+                    <textarea
+                      className="form-control"
+                      id={field.dataLabel}
+                      placeholder={field.placeholder}
+                      name={field.dataLabel}
+                      value={
+                        soupFormData[field.dataLabel as keyof SoupFormData] || ""
+                      }
+                      onChange={handleTextAreaChange}
+                      rows={4}
+                    ></textarea>
+                  )}
+                </div>
+              ))}
+            <div className="mb-4">
+              <Allergens
+                allergenFunc={handleAllergens}
+                handleAllergensTextarea={handleOtherAllergens}
+                otherAllergenData={soupFormData.otherAllergens}
+                initialAllergens={soupFormData.allergens}
+              />
             </div>
-          ))}
-        <Allergens
-          allergenFunc={handleAllergens}
-          handleAllergensTextarea={handleOtherAllergens}
-          otherAllergenData={soupFormData.otherAllergens}
-          initialAllergens={soupFormData.allergens} // prop to persist allergens
-        />
-        <br />
-        <br />
-        <br />
-        <Button type="submit" disabled={buttonDisabled} className="button">
-          Submit
-        </Button>
-      </form>
+            {submitAttempted && !isFormValid() && (
+              <p className="form-error" role="alert">
+                Please complete Soup name, Description, Ingredients, and Garnish.
+              </p>
+            )}
+            <div className="form-actions">
+              <Button
+                type="button"
+                className="btn btn-outline-secondary px-4"
+                onClick={handleClearForm}
+              >
+                Reset
+              </Button>
+              <Button
+                type="submit"
+                className={`btn btn-primary px-4 ${
+                  buttonDisabled ? "disabled" : ""
+                }`}
+              >
+                Submit
+              </Button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

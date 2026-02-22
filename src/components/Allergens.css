@@ -1,48 +1,34 @@
-.check-title {
-  width: 100%;
-  display: flex;
+.container-allergens {
+  margin-top: 8px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.7s ease, opacity 0.7s ease, visibility 0s linear 0.7s;
+  opacity: 0;
+  visibility: hidden;
 }
 
-.container-allergens {
-    width: 50%;
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .checkbox-container {
-    width: 50%;
-  }
-  /* control the background color of a checked checkbox */
-  input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    accent-color: black; /* for modern browsers */
-  }
-  .checkbox {
-    width: 60%;
-    margin: auto;
-    display: flex;
-    align-items: center;
-  }
-.checkbox-check {
-  margin-right: 5%;
+.allergens-open {
+  max-height: 700px;
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transition: max-height 0.7s ease, opacity 0.7s ease, visibility 0s;
 }
-  .other-allergen {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-  }
-  @media screen and (max-width: 760px) {
-    .container-allergens {
-      width: 80%;
-    }
-  }
-  @media screen and (max-width: 483px) {
-    .container-allergens {
-      width: 100%;
-    }
-    .checkbox {
-      width: 70%;
-    }
-  }
+
+.allergens-closed {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #0b5ed7;
+  background-color: transparent;
+}
+
+body[data-theme="dark"] input[type="checkbox"] {
+  background-color: transparent;
+}

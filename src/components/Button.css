@@ -1,63 +1,110 @@
-.container-button {
-    background-color: blue;
-    width: 12%;
-    margin: auto;
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    border-radius: 50px;
-    border: 4px solid white;
-    border-style: double;
+.button-wrap {
+  display: flex;
+  justify-content: center;
 }
-.print-edit-container {
-    background-color: blue;
-    width: 40%;
-    margin: auto;
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    margin: 0 2% 0 2%;
-    border-radius: 50px;
-    border: 4px solid white;
-    border-style: double;
-    /* margin-bottom: 3%; */
+
+button.disabled {
+  opacity: 0.6;
 }
-.button-edit,
-.button-print,
-.button {
-    width: 100%;
-    background-color: black;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
+
+.landing-container .btn,
+.soup-form-container .btn,
+.preview-container .btn {
+  border-radius: 999px;
+  padding: 0.65rem 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 2px solid transparent;
+  box-shadow: 0 10px 24px rgba(13, 110, 253, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
-button:disabled {
-    opacity: 0.5; 
-    cursor: not-allowed; 
-  }
-.stop {
-    color: white;
+
+.landing-container .btn:hover,
+.soup-form-container .btn:hover,
+.preview-container .btn:hover {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 16px 34px rgba(13, 110, 253, 0.32);
 }
-@media screen and (max-width: 1000px) {
-    .container-button {
-        width: 15%;
-    margin: auto;
-    }
+
+.landing-container .btn:active,
+.soup-form-container .btn:active,
+.preview-container .btn:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(13, 110, 253, 0.2);
 }
-@media screen and (max-width: 700px) {
-    .container-button {
-        width: 20%;
-    margin: auto;
-    }
+
+.landing-container .btn-outline-secondary,
+.soup-form-container .btn-outline-secondary,
+.preview-container .btn-outline-secondary {
+  color: #1d4ed8;
+  border-color: #1d4ed8;
+  background-color: transparent;
+  box-shadow: 0 10px 20px rgba(29, 78, 216, 0.2);
 }
-@media screen and (max-width: 550px) {
-    .container-button {
-        width: 40%;
-    margin: auto;
-    }
+
+.landing-container .btn-outline-secondary:hover,
+.soup-form-container .btn-outline-secondary:hover,
+.preview-container .btn-outline-secondary:hover {
+  background-color: #1d4ed8;
+  color: #ffffff;
+  border-color: #1d4ed8;
+}
+
+body[data-theme="dark"] .landing-container .btn,
+body[data-theme="dark"] .soup-form-container .btn,
+body[data-theme="dark"] .preview-container .btn {
+  box-shadow: none;
+}
+
+body[data-theme="dark"] .landing-container .btn:hover,
+body[data-theme="dark"] .soup-form-container .btn:hover,
+body[data-theme="dark"] .preview-container .btn:hover,
+body[data-theme="dark"] .landing-container .btn:active,
+body[data-theme="dark"] .soup-form-container .btn:active,
+body[data-theme="dark"] .preview-container .btn:active {
+  box-shadow: none;
+}
+
+.landing-container .btn-primary,
+.soup-form-container .btn-primary,
+.preview-container .btn-primary {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.landing-container .btn-primary:hover,
+.soup-form-container .btn-primary:hover,
+.preview-container .btn-primary:hover {
+  background-color: #1e40af;
+  border-color: #1e40af;
+}
+
+body[data-theme="dark"] .landing-container .btn-primary,
+body[data-theme="dark"] .soup-form-container .btn-primary,
+body[data-theme="dark"] .preview-container .btn-primary {
+  background-color: #334155;
+  border-color: #334155;
+}
+
+body[data-theme="dark"] .landing-container .btn-primary:hover,
+body[data-theme="dark"] .soup-form-container .btn-primary:hover,
+body[data-theme="dark"] .preview-container .btn-primary:hover {
+  background-color: #3b4b61;
+  border-color: #3b4b61;
+}
+
+body[data-theme="dark"] .landing-container .btn-outline-secondary,
+body[data-theme="dark"] .soup-form-container .btn-outline-secondary,
+body[data-theme="dark"] .preview-container .btn-outline-secondary {
+  color: #d1d5db;
+  border-color: #334155;
+  background-color: transparent;
+}
+
+body[data-theme="dark"] .landing-container .btn-outline-secondary:hover,
+body[data-theme="dark"] .soup-form-container .btn-outline-secondary:hover,
+body[data-theme="dark"] .preview-container .btn-outline-secondary:hover {
+  background-color: #334155;
+  border-color: #334155;
+  color: #ffffff;
 }

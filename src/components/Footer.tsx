@@ -4,15 +4,25 @@ import "./Footer.css";
 
 export default function Footer() {
   return (
-    <div className="container-footer no-print">
-      <div className="footer-text-div">
-        <p className="footer-text">Chefs' Life Made Easy was built by Saidou Monta</p>
-        <p className="footer-text">
-          For questions, comments, concerns, or to report a bug, please contact:
-        </p>
-        <p className="footer-text">mosaidou@gmail.com</p>
+    <footer className="container-footer no-print">
+      <div className="container text-center py-4">
+        <p className="footer-text">Buildt by </p>
         <a
-          className="container-logo g-0"
+          className="footer-link"
+          href="https://vergetechinnovationslab.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          VergeTech Innovations Lab
+        </a>
+        , llc
+        <p className="footer-text">
+          {/* <a className="footer-link" href="mailto:vergetechinnovationslab.com">
+            Contact
+          </a> */}
+        </p>
+        <a
+          className="container-logo"
           href="https://www.linkedin.com/in/saidou-monta?trk=profile-badge"
           target="_blank"
           rel="noopener noreferrer"
@@ -20,6 +30,6 @@ export default function Footer() {
           <FaLinkedinIn />
         </a>
       </div>
-    </div>
+    </footer>
   );
 }

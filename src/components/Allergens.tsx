@@ -74,12 +74,13 @@ export default function Allergens({
 
   return (
     <div>
-      <div className="check-title">
+      <div className="form-check mb-2">
         <input
+          className="form-check-input"
           type={type}
           id="label-title"
           onChange={handleAllergenChecbox}
-          disabled={Boolean(listOfAllergens.length)} // Disable if otherAllergenValue is truthy
+          disabled={Boolean(listOfAllergens.length)}
           checked={
             listOfAllergens.length > 0 ||
             initialAllergens.length > 0 ||
@@ -88,57 +89,56 @@ export default function Allergens({
         />
         <Label label={title} htmlFor="label-title" />
       </div>
-      <br />
-      <div className="container-allergens">
-        {showAllergensCheckboxes &&
-          allergens?.map((allergen) => (
-            <div className="checkbox-container" key={allergen.label}>
-              {allergen.type === "checkbox" &&
-                allergen.label !== "Other" &&
-                showAllergensCheckboxes && (
-                  <div className="checkbox">
-                    <input
-                      className="checkbox-check"
-                      id={allergen.label}
-                      type="checkbox"
-                      onChange={() => handleAllergenFamily(allergen.label)}
-                      checked={listOfAllergens.includes(allergen.label)}
-                      name={allergen.label}
-                    />
-                    <Label label={allergen.label} htmlFor={allergen.label} />
-                  </div>
-                )}
-              {allergen.type === "checkbox" && allergen.label === "Other" && (
-                <div className="checkbox">
+      <div
+        className={`container-allergens row g-2 ${
+          showAllergensCheckboxes ? "allergens-open" : "allergens-closed"
+        }`}
+      >
+        {allergens?.map((allergen) => (
+          <div className="col-12 col-sm-6" key={allergen.label}>
+            {allergen.type === "checkbox" &&
+              allergen.label !== "Other" && (
+                <div className="form-check">
                   <input
-                    className="checkbox-check"
+                    className="form-check-input"
                     id={allergen.label}
                     type="checkbox"
                     onChange={() => handleAllergenFamily(allergen.label)}
-                    checked={
-                      listOfAllergens.includes(allergen.label) ||
-                      Boolean(otherAllergenValue)
-                    }
+                    checked={listOfAllergens.includes(allergen.label)}
                     name={allergen.label}
-                    disabled={Boolean(otherAllergenValue)} // Disable if otherAllergenValue is truthy
                   />
                   <Label label={allergen.label} htmlFor={allergen.label} />
                 </div>
               )}
-            </div>
-          ))}
+            {allergen.type === "checkbox" && allergen.label === "Other" && (
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  id={allergen.label}
+                  type="checkbox"
+                  onChange={() => handleAllergenFamily(allergen.label)}
+                  checked={
+                    listOfAllergens.includes(allergen.label) ||
+                    Boolean(otherAllergenValue)
+                  }
+                  name={allergen.label}
+                  disabled={Boolean(otherAllergenValue)} // Disable if otherAllergenValue is truthy
+                />
+                <Label label={allergen.label} htmlFor={allergen.label} />
+              </div>
+            )}
+          </div>
+        ))}
       </div>
-      <br />
       {!!otherAllergenValue.length || showOtherAllergensTextarea ? (
-        <div className="other-allergen">
+        <div className="other-allergen mt-3">
           <Label
             label={otherAllergen.label}
             htmlFor={otherAllergen.dataLabel}
           />
-          <br />
           <textarea
             id={otherAllergen.dataLabel}
-            className="text"
+            className="form-control"
             placeholder={otherAllergenData || otherAllergen.placeholder}
             name={otherAllergen.dataLabel}
             value={otherAllergenValue || ""}
@@ -146,8 +146,8 @@ export default function Allergens({
               setOtherAllergenValue(e.target.value);
               handleAllergensTextarea(e.target.value);
             }}
+            rows={3}
           ></textarea>
-          <br />
         </div>
       ) : null}
     </div>

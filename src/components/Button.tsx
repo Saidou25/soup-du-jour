@@ -20,7 +20,7 @@ export default function Button({
   onClick,
 }: ButtonType) {
   return (
-    <div className={!printEdit ? "container-button" : "print-edit-container"}>
+    <div className="button-wrap">
       <button
         className={`${className} ${disabled ? "disabled" : ""}`}
         type={type}
