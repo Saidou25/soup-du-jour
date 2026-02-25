@@ -5,27 +5,32 @@ import "./Header.css";
 
 type HeaderProps = {
   headerTitle: string;
+  headerSubtitle?: string;
   onHomeClick?: () => void;
   homeLabel?: string;
 };
 
+type ThemeMode = "light" | "dark" | "default";
+
 export default function Header({
   headerTitle,
+  headerSubtitle,
   onHomeClick,
   homeLabel = "Soup du Jour",
 }: HeaderProps) {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<ThemeMode>("default");
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
+    const savedTheme = localStorage.getItem("theme") as ThemeMode | null;
     const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches;
-    const initialTheme = savedTheme ?? (prefersDark ? "dark" : "light");
+    const initialTheme = savedTheme ?? (prefersDark ? "dark" : "default");
     setTheme(initialTheme);
     document.body.dataset.theme = initialTheme;
   }, []);
 
   const toggleTheme = () => {
-    const nextTheme = theme === "light" ? "dark" : "light";
+    const nextTheme =
+      theme === "light" ? "dark" : theme === "dark" ? "default" : "light";
     setTheme(nextTheme);
     document.body.dataset.theme = nextTheme;
     localStorage.setItem("theme", nextTheme);
@@ -59,13 +64,27 @@ export default function Header({
               type="button"
               className="theme-toggle"
               onClick={toggleTheme}
-              aria-label="Toggle light/dark mode"
+              aria-label="Cycle theme"
             >
-              {theme === "light" ? <BsMoonFill /> : <BsSun />}
+              {theme === "default" ? (
+                <span className="theme-toggle-duo">
+                  <BsMoonFill />
+                  <BsSun />
+                </span>
+              ) : theme === "dark" ? (
+                <BsMoonFill />
+              ) : (
+                <BsSun />
+              )}
             </button>
           </div>
           <div className="col-12">
-            <h1 className="header-text text-center">{headerTitle}</h1>
+            <h1 className="header-text text-center">
+              <span className="header-title-main">{headerTitle}</span>
+              {headerSubtitle ? (
+                <span className="header-title-sub">{headerSubtitle}</span>
+              ) : null}
+            </h1>
           </div>
         </div>
       </div>

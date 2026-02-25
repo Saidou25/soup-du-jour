@@ -140,6 +140,7 @@ export default function Preview({
     <div className="preview-container print-page">
       <Header
         headerTitle="Review"
+        headerSubtitle="your featured soup"
         onHomeClick={goHome}
         homeLabel="CLS"
       />

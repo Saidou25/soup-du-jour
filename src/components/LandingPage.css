@@ -5,6 +5,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 24px;
   padding: 48px 16px;
   position: relative;
   background:
@@ -56,11 +57,11 @@
 
 .landing-text {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: #6c757d;
 }
 
-body[data-theme="dark"] .landing-text {
+body:is([data-theme="dark"], [data-theme="default"]) .landing-text {
   color: #e2e8f0;
 }
 
@@ -69,15 +70,42 @@ body[data-theme="dark"] .landing-text {
   justify-content: center;
   position: relative;
   z-index: 1;
-  margin-top: 6px;
+  margin-top: 18px;
 }
 
 .start-button {
   border: 2px solid #1d4ed8;
 }
 
-body[data-theme="dark"] .start-button {
+body:is([data-theme="dark"], [data-theme="default"]) .start-button {
   border-color: #334155;
+}
+
+body[data-theme="default"] .start-button {
+  background-color: transparent;
+  border-color: #0b0f14;
+  color: #0b0f14;
+}
+
+body[data-theme="default"] .start-button:hover {
+  transform: scale(1.06);
+  background-color: rgba(11, 15, 20, 0.08);
+  border-color: #0b0f14;
+}
+
+body[data-theme="default"] .landing-container .start-button.btn-primary {
+  background-color: transparent;
+  border-color: #0b0f14;
+  color: #0b0f14;
+}
+
+body[data-theme="default"] .landing-container .start-button.btn-primary:hover {
+  background-color: rgba(11, 15, 20, 0.08);
+  border-color: #0b0f14;
+}
+
+body[data-theme="default"] .landing-button-div {
+  margin-top: 28px;
 }
 
 .landing-ornament {
@@ -90,18 +118,27 @@ body[data-theme="dark"] .start-button {
   z-index: 1;
 }
 
-body[data-theme="dark"] .landing-hero {
-  background: rgba(18, 20, 24, 0.78);
-  border-color: rgba(45, 50, 56, 0.8);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+body[data-theme="default"] .landing-ornament {
+  display: none;
 }
 
-body[data-theme="dark"] .landing-card {
+body:is([data-theme="dark"], [data-theme="default"]) .landing-hero {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+body:is([data-theme="dark"], [data-theme="default"]) .landing-card {
   background: rgba(24, 27, 31, 0.9);
   border-color: rgba(42, 47, 51, 0.9);
 }
 
-body[data-theme="dark"] .landing-hero::before {
+body[data-theme="default"] .landing-card {
+  background: transparent;
+  border-color: transparent;
+}
+
+body:is([data-theme="dark"], [data-theme="default"]) .landing-hero::before {
   background: radial-gradient(
     400px 200px at 50% 0%,
     rgba(125, 180, 255, 0.25),

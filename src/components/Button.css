@@ -7,6 +7,10 @@ button.disabled {
   opacity: 0.6;
 }
 
+body[data-theme="default"] .soup-form-container .btn-primary.disabled {
+  color: #0b0f14;
+}
+
 .landing-container .btn,
 .soup-form-container .btn,
 .preview-container .btn {
@@ -50,61 +54,113 @@ button.disabled {
   border-color: #1d4ed8;
 }
 
-body[data-theme="dark"] .landing-container .btn,
-body[data-theme="dark"] .soup-form-container .btn,
-body[data-theme="dark"] .preview-container .btn {
+body:is([data-theme="dark"], [data-theme="default"]) .landing-container .btn,
+body:is([data-theme="dark"], [data-theme="default"]) .soup-form-container .btn,
+body:is([data-theme="dark"], [data-theme="default"]) .preview-container .btn {
   box-shadow: none;
 }
 
-body[data-theme="dark"] .landing-container .btn:hover,
-body[data-theme="dark"] .soup-form-container .btn:hover,
-body[data-theme="dark"] .preview-container .btn:hover,
-body[data-theme="dark"] .landing-container .btn:active,
-body[data-theme="dark"] .soup-form-container .btn:active,
-body[data-theme="dark"] .preview-container .btn:active {
+body:is([data-theme="dark"], [data-theme="default"]) .landing-container .btn:hover,
+body:is([data-theme="dark"], [data-theme="default"]) .soup-form-container .btn:hover,
+body:is([data-theme="dark"], [data-theme="default"]) .preview-container .btn:hover,
+body:is([data-theme="dark"], [data-theme="default"]) .landing-container .btn:active,
+body:is([data-theme="dark"], [data-theme="default"]) .soup-form-container .btn:active,
+body:is([data-theme="dark"], [data-theme="default"]) .preview-container .btn:active {
   box-shadow: none;
 }
 
-.landing-container .btn-primary,
 .soup-form-container .btn-primary,
 .preview-container .btn-primary {
   background-color: #1d4ed8;
   border-color: #1d4ed8;
 }
 
-.landing-container .btn-primary:hover,
 .soup-form-container .btn-primary:hover,
 .preview-container .btn-primary:hover {
   background-color: #1e40af;
   border-color: #1e40af;
 }
 
-body[data-theme="dark"] .landing-container .btn-primary,
-body[data-theme="dark"] .soup-form-container .btn-primary,
-body[data-theme="dark"] .preview-container .btn-primary {
+body:is([data-theme="dark"], [data-theme="default"]) .soup-form-container .btn-primary,
+body:is([data-theme="dark"], [data-theme="default"]) .preview-container .btn-primary {
   background-color: #334155;
   border-color: #334155;
 }
 
-body[data-theme="dark"] .landing-container .btn-primary:hover,
-body[data-theme="dark"] .soup-form-container .btn-primary:hover,
-body[data-theme="dark"] .preview-container .btn-primary:hover {
+body:is([data-theme="dark"], [data-theme="default"]) .soup-form-container .btn-primary:hover,
+body:is([data-theme="dark"], [data-theme="default"]) .preview-container .btn-primary:hover {
   background-color: #3b4b61;
   border-color: #3b4b61;
 }
 
-body[data-theme="dark"] .landing-container .btn-outline-secondary,
-body[data-theme="dark"] .soup-form-container .btn-outline-secondary,
-body[data-theme="dark"] .preview-container .btn-outline-secondary {
+body[data-theme="default"] .soup-form-container .btn-primary:not(.disabled) {
+  background-color: #000000;
+  border-color: #000000;
+  color: #ffffff;
+}
+
+body[data-theme="default"] .soup-form-container .btn-primary:not(.disabled):hover {
+  background-color: #111111;
+  border-color: #111111;
+  color: #ffffff;
+}
+
+body[data-theme="default"] .soup-form-container .btn-outline-secondary {
+  background-color: #b9c6d6;
+  border-color: #b9c6d6;
+  color: #0b0f14;
+}
+
+body[data-theme="default"] .soup-form-container .btn-outline-secondary:hover {
+  background-color: #aab8c9;
+  border-color: #aab8c9;
+  color: #0b0f14;
+}
+
+body[data-theme="default"] .soup-form-container .btn.btn-outline-secondary {
+  color: #0b0f14;
+}
+
+body[data-theme="default"] .soup-form-container .btn.btn-outline-secondary:hover {
+  color: #0b0f14;
+}
+
+body:is([data-theme="dark"], [data-theme="default"]) .landing-container .btn-outline-secondary,
+body:is([data-theme="dark"], [data-theme="default"]) .soup-form-container .btn-outline-secondary,
+body:is([data-theme="dark"], [data-theme="default"]) .preview-container .btn-outline-secondary {
   color: #d1d5db;
   border-color: #334155;
   background-color: transparent;
 }
 
-body[data-theme="dark"] .landing-container .btn-outline-secondary:hover,
-body[data-theme="dark"] .soup-form-container .btn-outline-secondary:hover,
-body[data-theme="dark"] .preview-container .btn-outline-secondary:hover {
+body:is([data-theme="dark"], [data-theme="default"]) .landing-container .btn-outline-secondary:hover,
+body:is([data-theme="dark"], [data-theme="default"]) .soup-form-container .btn-outline-secondary:hover,
+body:is([data-theme="dark"], [data-theme="default"]) .preview-container .btn-outline-secondary:hover {
   background-color: #334155;
   border-color: #334155;
+  color: #ffffff;
+}
+
+body[data-theme="default"] .preview-container .btn-outline-secondary {
+  background-color: #1f2937;
+  border-color: #1f2937;
+  color: #ffffff;
+}
+
+body[data-theme="default"] .preview-container .btn-outline-secondary:hover {
+  background-color: #111827;
+  border-color: #111827;
+}
+
+body[data-theme="default"] .preview-container .btn-outline-secondary:hover,
+body[data-theme="default"] .preview-container .btn-outline-secondary {
+  color: #ffffff;
+}
+
+body[data-theme="default"] .review-tools .btn-outline-secondary {
+  color: #ffffff;
+}
+
+body[data-theme="default"] .review-tools .btn-outline-secondary:hover {
   color: #ffffff;
 }

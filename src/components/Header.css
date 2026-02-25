@@ -1,8 +1,6 @@
 .container-header {
-  background-color: #ffffff;
-  border-bottom: 1px solid #dee2e6;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background-color: transparent;
+  border-bottom: none;
   margin-bottom: 1rem;
 }
 
@@ -16,9 +14,10 @@
 }
 
 .wordmark.btn-link {
-  padding: 1rem !important;
+  padding: 0.75rem 1.25rem !important;
   text-decoration: none;
   margin-left: 1rem;
+  padding-bottom: 1.15rem !important;
 }
 
 .wordmark:hover {
@@ -39,6 +38,7 @@
   font-size: 1.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: #0b5ed7;
   margin: 0;
   line-height: 1.1;
 }
@@ -67,10 +67,51 @@
 }
 
 .header-text {
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
-  font-weight: 600;
   margin: 0 0 1rem 0;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.header-title-main {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.header-title-sub {
+  font-size: clamp(1.2rem, 2.4vw, 1.8rem);
+  font-weight: 500;
+  color: #0b5ed7;
+  letter-spacing: 0.03em;
+  position: relative;
+  padding-bottom: 1.05rem;
+}
+
+.header-title-sub::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 72%;
+  height: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, #5b6674, transparent);
+  opacity: 0.6;
+  border-radius: 999px;
+  background-size: 220% 100%;
+  animation: header-underline-shimmer 6.5s linear infinite;
+}
+
+@keyframes header-underline-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 220% 50%;
+  }
 }
 
 .theme-toggle {
@@ -81,7 +122,7 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  font-size: 2.75rem;
+  font-size: 1.85rem;
   line-height: 1;
   color: #1f2937;
   background: linear-gradient(135deg, #ffffff 0%, #edf2f7 100%);
@@ -97,7 +138,13 @@
   height: 1em;
 }
 
-body[data-theme="dark"] .theme-toggle {
+.theme-toggle-duo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+body:is([data-theme="dark"], [data-theme="default"]) .theme-toggle {
   color: #e5e7eb;
   background: linear-gradient(135deg, #1a1f2b 0%, #0f141c 100%);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
@@ -108,7 +155,7 @@ body[data-theme="dark"] .theme-toggle {
   box-shadow: 0 40px 120px rgba(15, 23, 42, 0.4);
 }
 
-body[data-theme="dark"] .theme-toggle:hover {
+body:is([data-theme="dark"], [data-theme="default"]) .theme-toggle:hover {
   box-shadow: 0 40px 120px rgba(0, 0, 0, 0.7);
 }
 

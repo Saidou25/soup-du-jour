@@ -54,6 +54,7 @@ export default function SoupForm({
   const [showPreview, setShowPreview] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [submitAttempted, setSubmitAttempted] = useState(false);
+  const [allergenResetKey, setAllergenResetKey] = useState(0);
 
   const { title, fields } = soupData;
 
@@ -61,6 +62,7 @@ export default function SoupForm({
   const handleReset = () => {
     setButtonDisabled(true);
     setSubmitAttempted(false);
+    setAllergenResetKey((prev) => prev + 1);
     setSoupFormData({
       title: soupData.title,
       soupName: "",
@@ -80,6 +82,7 @@ export default function SoupForm({
   const handleClearForm = () => {
     setButtonDisabled(true);
     setSubmitAttempted(false);
+    setAllergenResetKey((prev) => prev + 1);
     setSoupFormData({
       title: soupData.title,
       soupName: "",
@@ -169,7 +172,8 @@ export default function SoupForm({
   return (
     <div>
       <Header
-        headerTitle="Create your featured soup"
+        headerTitle="Create your"
+        headerSubtitle="featured soup"
         onHomeClick={() => backToLandingPage(true)}
         homeLabel="CLS"
       />
@@ -211,6 +215,7 @@ export default function SoupForm({
               ))}
             <div className="mb-4">
               <Allergens
+                key={allergenResetKey}
                 allergenFunc={handleAllergens}
                 handleAllergensTextarea={handleOtherAllergens}
                 otherAllergenData={soupFormData.otherAllergens}

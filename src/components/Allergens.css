@@ -20,6 +20,7 @@
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
+  transition: max-height 0.7s ease, opacity 0.7s ease, visibility 0s linear 0.7s;
 }
 
 input[type="checkbox"] {
@@ -29,6 +30,10 @@ input[type="checkbox"] {
   background-color: transparent;
 }
 
-body[data-theme="dark"] input[type="checkbox"] {
+body:is([data-theme="dark"], [data-theme="default"]) input[type="checkbox"] {
   background-color: transparent;
+}
+
+body[data-theme="default"] input[type="checkbox"] {
+  accent-color: #0b0f14;
 }

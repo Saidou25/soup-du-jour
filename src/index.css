@@ -32,146 +32,298 @@ body {
 body[data-theme="dark"] {
   background: linear-gradient(
     135deg,
+    #060607 0%,
+    #0b0d10 50%,
+    #040405 100%
+  );
+  color: #c7cdd4;
+}
+
+body[data-theme="default"] {
+  --default-page-bg: linear-gradient(
+    135deg,
     #121212 0%,
     rgba(11, 94, 215, 0.35) 45%,
     #0f1113 100%
   );
-  color: #f8f9fa;
+  background: linear-gradient(
+    135deg,
+    #121212 0%,
+    rgba(11, 94, 215, 0.35) 45%,
+    #0f1113 100%
+  );
+  color: #0b0f14;
 }
 
-body[data-theme="dark"] .container-header,
-body[data-theme="dark"] .container-footer {
-  background-color: #181a1b;
-  border-color: #2a2f33;
+body:is([data-theme="dark"], [data-theme="default"]) .container-header,
+body:is([data-theme="dark"], [data-theme="default"]) .container-footer {
+  background-color: transparent;
+  border-color: transparent;
 }
 
-body[data-theme="dark"] .soup-form-container,
-body[data-theme="dark"] .preview-container,
-body[data-theme="dark"] .landing-container {
+body:is([data-theme="dark"], [data-theme="default"]) .soup-form-container,
+body:is([data-theme="dark"], [data-theme="default"]) .preview-container,
+body:is([data-theme="dark"], [data-theme="default"]) .landing-container {
   background: transparent;
 }
 
-body[data-theme="dark"] .soup-form,
-body[data-theme="dark"] .review-container,
-body[data-theme="dark"] .review-tools,
-body[data-theme="dark"] .landing-card,
-body[data-theme="dark"] .cls-container,
-body[data-theme="dark"] .final-message {
+body:is([data-theme="dark"], [data-theme="default"]) .soup-form,
+body:is([data-theme="dark"], [data-theme="default"]) .review-container,
+body:is([data-theme="dark"], [data-theme="default"]) .review-tools,
+body:is([data-theme="dark"], [data-theme="default"]) .landing-card,
+body:is([data-theme="dark"], [data-theme="default"]) .cls-container,
+body:is([data-theme="dark"], [data-theme="default"]) .final-message {
   background: linear-gradient(135deg, #1a1d1f 0%, #15181c 100%);
-  border-color: #4b5563;
+  border-color: transparent;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.55);
 }
 
+body[data-theme="dark"] .soup-form {
+  background: #000000;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+body[data-theme="default"] .soup-form {
+  background: linear-gradient(
+    135deg,
+    #6b829f 0%,
+    #829ab4 45%,
+    #4f6682 100%
+  );
+  border: none;
+}
+
+body[data-theme="default"] .review-container {
+  background: #ffffff;
+}
+
+body[data-theme="default"] .review-tools {
+  background: linear-gradient(
+    135deg,
+    #6b829f 0%,
+    #829ab4 45%,
+    #4f6682 100%
+  );
+}
+
+body[data-theme="default"] .landing-card,
+body[data-theme="default"] .cls-container {
+  background: var(--default-page-bg);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+body[data-theme="dark"] .review-container,
 body[data-theme="dark"] .review-tools {
-  border: 1px solid #4b5563 !important;
+  background: #000000;
 }
 
-body[data-theme="dark"] .footer-text,
-body[data-theme="dark"] .landing-text,
-body[data-theme="dark"] .preview-text,
-body[data-theme="dark"] .brand-subtitle {
-  color: #d4d7dc;
+body:is([data-theme="dark"], [data-theme="default"]) .review-tools {
+  border: none !important;
 }
 
-body[data-theme="dark"] .soup-name,
-body[data-theme="dark"] .soup-title {
-  color: #f1f5f9;
+body:is([data-theme="dark"], [data-theme="default"]) .footer-text,
+body:is([data-theme="dark"], [data-theme="default"]) .landing-text,
+body:is([data-theme="dark"], [data-theme="default"]) .preview-text,
+body:is([data-theme="dark"], [data-theme="default"]) .brand-subtitle {
+  color: #b8bec6;
 }
 
-body[data-theme="dark"] .brand-mark {
+body[data-theme="default"] .footer-text,
+body[data-theme="default"] .landing-text,
+body[data-theme="default"] .preview-text,
+body[data-theme="default"] .brand-subtitle,
+body[data-theme="default"] .soup-name,
+body[data-theme="default"] .soup-title,
+body[data-theme="default"] .header-text,
+body[data-theme="default"] .brand-text,
+body[data-theme="default"] .header-title-sub,
+body[data-theme="default"] .preview-label,
+body[data-theme="default"] .label,
+body[data-theme="default"] .review-tools,
+body[data-theme="default"] .review-tools .tool-value,
+body[data-theme="default"] .review-tools .h6,
+body[data-theme="default"] .review-tools .btn-link,
+body[data-theme="default"] .review-tools .tool-subtitle,
+body[data-theme="default"] .review-container p,
+body[data-theme="default"] .review-container span,
+body[data-theme="default"] .review-tools .form-check-label {
+  color: #0b0f14;
+}
+
+body[data-theme="default"] .form-control {
+  background-color: #829ab4;
+  border-color: transparent;
+  color: #0b0f14;
+}
+
+body[data-theme="default"] .form-control:focus {
+  background-color: #829ab4;
+  border-color: transparent;
+  color: #0b0f14;
+  box-shadow: none;
+}
+
+body[data-theme="default"] .form-control::placeholder {
+  color: rgba(11, 15, 20, 0.55);
+}
+
+body[data-theme="default"] .form-control:not(:placeholder-shown) {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: transparent;
+}
+
+body[data-theme="default"] .form-control:not(:placeholder-shown)::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+body[data-theme="default"] .form-check-input {
+  border-color: #0b0f14;
+  background-color: transparent;
+}
+
+body[data-theme="default"] .form-check-input:checked {
+  border-color: #0b0f14;
+  background-color: #0b0f14;
+}
+
+body[data-theme="default"] .review-tools .form-check-input {
+  background-color: transparent;
+  border-color: #0b0f14;
+  background-image: radial-gradient(circle at 25% 50%, #0b0f14 35%, transparent 36%);
+}
+
+body[data-theme="default"] .review-tools .form-check-input:checked {
+  background-color: #0b0f14;
+  border-color: #0b0f14;
+  background-image: radial-gradient(circle at 75% 50%, #d1d5db 35%, transparent 36%);
+  box-shadow: none;
+}
+
+body[data-theme="default"] .preview-container .btn-outline-secondary {
+  color: #ffffff !important;
+}
+
+body:is([data-theme="dark"], [data-theme="default"]) .soup-name,
+body:is([data-theme="dark"], [data-theme="default"]) .soup-title {
+  color: #c3cad2;
+  font-weight: 500;
+}
+
+body:is([data-theme="dark"], [data-theme="default"]) .brand-mark {
   background: #7db4ff;
 }
 
-body[data-theme="dark"] .header-text,
-body[data-theme="dark"] .brand-text {
-  color: #cbd5e1;
+body:is([data-theme="dark"], [data-theme="default"]) .header-text {
+  color: #b3bbc5;
+  font-weight: 500;
 }
 
-body[data-theme="dark"] .brand-text {
+body:is([data-theme="dark"], [data-theme="default"]) .header-title-sub {
+  color: #b5c6e6;
+}
+
+body:is([data-theme="dark"], [data-theme="default"]) .header-title-sub::after {
+  background: linear-gradient(90deg, transparent, #5b6674, transparent);
+  opacity: 0.5;
+  background-size: 220% 100%;
+  animation: header-underline-shimmer 6.5s ease-in-out infinite;
+}
+
+body:is([data-theme="dark"], [data-theme="default"]) .brand-text {
   color: #0b5ed7;
 }
 
-body[data-theme="dark"] .preview-label,
-body[data-theme="dark"] .label {
+body:is([data-theme="dark"], [data-theme="default"]) .preview-label,
+body:is([data-theme="dark"], [data-theme="default"]) .label {
+  color: #b9c0c8;
+  font-weight: 500;
+}
+
+body:is([data-theme="dark"], [data-theme="default"]) .review-tools,
+body:is([data-theme="dark"], [data-theme="default"]) .review-tools .tool-value,
+body:is([data-theme="dark"], [data-theme="default"]) .review-tools .h6,
+body:is([data-theme="dark"], [data-theme="default"]) .review-tools .btn-link,
+body:is([data-theme="dark"], [data-theme="default"]) .review-tools .tool-subtitle {
   color: #d7dde4;
 }
 
-body[data-theme="dark"] .review-tools,
-body[data-theme="dark"] .review-tools .tool-value,
-body[data-theme="dark"] .review-tools .h6,
-body[data-theme="dark"] .review-tools .btn-link,
-body[data-theme="dark"] .review-tools .tool-subtitle {
-  color: #d7dde4;
+body:is([data-theme="dark"], [data-theme="default"]) .review-tools .h6 {
+  color: #c7cdd4;
+  font-weight: 500;
 }
 
-body[data-theme="dark"] .review-tools .h6 {
-  color: #f1f5f9;
-}
-
-body[data-theme="dark"] .review-tools .tool-subtitle,
-body[data-theme="dark"] .review-tools .tool-value {
+body:is([data-theme="dark"], [data-theme="default"]) .review-tools .tool-subtitle,
+body:is([data-theme="dark"], [data-theme="default"]) .review-tools .tool-value {
   color: #c7cdd4;
 }
 
-body[data-theme="dark"] .review-container p,
-body[data-theme="dark"] .review-container span {
-  color: #c7cdd4;
+body:is([data-theme="dark"], [data-theme="default"]) .review-container p,
+body:is([data-theme="dark"], [data-theme="default"]) .review-container span {
+  color: #bfc6ce;
 }
 
-body[data-theme="dark"] .review-tools .form-check-label {
-  color: #c7cdd4;
+body:is([data-theme="dark"], [data-theme="default"]) .review-tools .form-check-label {
+  color: #bfc6ce;
 }
 
-body[data-theme="dark"] .review-tools .form-check-input {
+body:is([data-theme="dark"], [data-theme="default"]) .review-tools .form-check-input {
   background-color: #0f141c;
-  border-color: #4b5563;
-  background-image: radial-gradient(circle at 25% 50%, #ffffff 35%, transparent 36%);
+  border-color: #343a40;
+  background-image: radial-gradient(circle at 25% 50%, #9aa0a6 35%, transparent 36%);
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
-body[data-theme="dark"] .review-tools .form-check-input:checked {
+body:is([data-theme="dark"], [data-theme="default"]) .review-tools .form-check-input:checked {
   background-color: #0f766e;
   border-color: #0f766e;
-  background-image: radial-gradient(circle at 75% 50%, #ffffff 35%, transparent 36%);
+  background-image: radial-gradient(circle at 75% 50%, #d1d5db 35%, transparent 36%);
 }
 
-body[data-theme="dark"] .review-container .soup-title,
-body[data-theme="dark"] .review-container .soup-name {
+body:is([data-theme="dark"], [data-theme="default"]) .review-container .soup-title,
+body:is([data-theme="dark"], [data-theme="default"]) .review-container .soup-name {
   color: #f1f5f9;
 }
 
-body[data-theme="dark"] .soup-logo {
+body:is([data-theme="dark"], [data-theme="default"]) .soup-logo {
   color: #e6edf3;
 }
 
-body[data-theme="dark"] .title {
+body[data-theme="dark"] .cls-container {
+  border-color: #0b5ed7;
+}
+
+body:is([data-theme="dark"], [data-theme="default"]) .title {
+  color: #c3cad2;
+  font-weight: 500;
+}
+
+body:is([data-theme="dark"], [data-theme="default"]) .form-control {
+  background-color: #121416;
+  border-color: #24282c;
   color: #d7dde4;
 }
 
-body[data-theme="dark"] .form-control {
-  background-color: #121416;
-  border-color: #2a2f33;
-  color: #d7dde4;
-}
-
-body[data-theme="dark"] .form-control:focus {
+body:is([data-theme="dark"], [data-theme="default"]) .form-control:focus {
   background-color: #121416;
   color: #d7dde4;
-  border-color: #3a4148;
+  border-color: #2f353b;
   box-shadow: none;
 }
 
-body[data-theme="dark"] .form-control:-webkit-autofill,
-body[data-theme="dark"] .form-control:-webkit-autofill:hover,
-body[data-theme="dark"] .form-control:-webkit-autofill:focus,
-body[data-theme="dark"] .form-control:-webkit-autofill:active {
+body:is([data-theme="dark"], [data-theme="default"]) .form-control:-webkit-autofill,
+body:is([data-theme="dark"], [data-theme="default"]) .form-control:-webkit-autofill:hover,
+body:is([data-theme="dark"], [data-theme="default"]) .form-control:-webkit-autofill:focus,
+body:is([data-theme="dark"], [data-theme="default"]) .form-control:-webkit-autofill:active {
   -webkit-text-fill-color: #d7dde4;
   transition: background-color 9999s ease-in-out 0s;
   box-shadow: 0 0 0 1000px #121416 inset;
-  border-color: #3a4148;
+  border-color: #2f353b;
 }
 
-body[data-theme="dark"] .form-control::placeholder {
+body:is([data-theme="dark"], [data-theme="default"]) .form-control::placeholder {
   color: #8b949e;
 }
 
@@ -179,17 +331,74 @@ body[data-theme="dark"] .form-control::placeholder {
   font-style: italic;
 }
 
-body[data-theme="dark"] .btn-primary {
+body:is([data-theme="dark"], [data-theme="default"]) .btn-primary {
   background-color: #334155;
   border-color: #334155;
 }
 
-body[data-theme="dark"] .btn-outline-secondary {
-  color: #c9d1d9;
-  border-color: #4b5563;
+body:is([data-theme="dark"], [data-theme="default"]) .btn-outline-secondary {
+  color: #b9c0c8;
+  border-color: #384048;
 }
 
-body[data-theme="dark"] .container-logo {
+body:is([data-theme="dark"], [data-theme="default"]) .container-logo {
   color: #c9d1d9;
-  border-color: #2a2f33;
+  border-color: #24282c;
+}
+
+body[data-theme="default"] .header-text,
+body[data-theme="default"] .brand-text,
+body[data-theme="default"] .header-title-sub,
+body[data-theme="default"] .footer-text,
+body[data-theme="default"] .landing-text,
+body[data-theme="default"] .preview-text,
+body[data-theme="default"] .brand-subtitle,
+body[data-theme="default"] .soup-name,
+body[data-theme="default"] .soup-title,
+body[data-theme="default"] .preview-label,
+body[data-theme="default"] .label,
+body[data-theme="default"] .review-tools,
+body[data-theme="default"] .review-tools .tool-value,
+body[data-theme="default"] .review-tools .h6,
+body[data-theme="default"] .review-tools .btn-link,
+body[data-theme="default"] .review-tools .tool-subtitle,
+body[data-theme="default"] .review-container p,
+body[data-theme="default"] .review-container span,
+body[data-theme="default"] .review-tools .form-check-label,
+body[data-theme="default"] .review-container .soup-title,
+body[data-theme="default"] .review-container .soup-name,
+body[data-theme="default"] .soup-logo,
+body[data-theme="default"] .title {
+  color: #0b0f14;
+}
+
+body[data-theme="default"] .footer-link,
+body[data-theme="default"] .footer-link:hover {
+  color: #0b0f14;
+}
+
+body[data-theme="default"] .container-logo {
+  color: #0b0f14;
+  border-color: #0b0f14;
+}
+
+body[data-theme="default"] .brand-text {
+  color: #0b5ed7;
+}
+
+body[data-theme="default"] .form-control {
+  background-color: rgba(79, 85, 104, 0.368);
+  border-color: rgba(0, 0, 0, 0.15);
+  color: #0b0f14;
+}
+
+body[data-theme="default"] .form-control:focus {
+  background-color: rgba(255, 255, 255, 0.32);
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #0b0f14;
+  box-shadow: none;
+}
+
+body[data-theme="default"] .form-control::placeholder {
+  color: rgba(11, 15, 20, 0.55);
 }
